@@ -3,9 +3,63 @@
 
 function App() {
   return <div className="wrapper clear">
+    <div className="overlay">
+      <div className="drawer">
+        <h2 className="mb-30" >Cart: </h2>
+        <div className="item">
+
+          <div className="cartItem d-flex align-center mb-20">
+
+            <div style={{ backgroundImage: 'url(/img/sneakers/NikeAir.jpg)' }} className="cartItemImg">
+            </div>
+            <div className="mr-20 flex">
+              <p className="mb-5">
+                Man sneakers Nike Air Max 270
+              </p>
+              <b>$ 110</b>
+            </div>
+            <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
+          </div>
+          <div className="cartItem d-flex align-center mb-20">
+            <div style={{ backgroundImage: 'url(/img/sneakers/NikeAir.jpg)' }} className="cartItemImg">
+            </div>
+            <div className="mr-20 flex">
+              <p className="mb-5">
+                Man sneakers Nike Air Max 270
+              </p>
+              <b>$ 110</b>
+            </div>
+            <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
+          </div>
+        </div>
+
+        <div className="cartTotalBlock">
+          <ul >
+            <li >
+              <span>Order Summary </span>
+              <div></div>
+              <b>$200.00</b>
+
+            </li>
+            <li >
+              <span>Taxes</span>
+              <div></div>
+              <b>$10.00 </b>
+            </li>
+
+          </ul>
+          <button>Checkout <img scr="/img/arrow.svg" alt="Arrow" /> </button>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
     <header className="d-flex justify-between align-center p-40">
       <div className="d-flex align-center">
-        <img width={40} height={40} src="/img/logo.png" />
+        <img width={40} height={40} src="/img/logo.png" alt="logo" />
         <div >
           <h3 className="text-uppercase">React Sneakers</h3>
           <p className="opacity-5">The best shop for sneakers</p>
@@ -14,24 +68,33 @@ function App() {
 
       <ul className="d-flex">
         <li className="mr-30">
-          <img width={18} height={18} src="/img/cart.svg" />
+          <img width={18} height={18} src="/img/cart.svg" alt="cart" />
           <span>$ 120 </span>
         </li>
         <li className="mr-35">
-          <img width={21} height={19} src="/img/heart.png" />
+          <img width={21} height={19} src="/img/heart.png" alt="heart" />
         </li>
         <li>
-          <img width={21} height={19} src="/img/user.svg" />
+          <img width={21} height={19} src="/img/user.svg" alt="user" />
         </li>
       </ul>
     </header>
 
 
     <div className="content p-40">
-      <h1 className="mb-40">All sneakers</h1>
+      <div className="d-flex align-center mb-40 justify-between">
+        <h1 className="">All sneakers</h1>
+        <div className="search-block d-flex">
+          <img src="/img/search.svg" alt="Search" />
+          <input placeholder="Search ..." ></input>
+        </div>
+      </div>
 
       <div className="d-flex">
         <div className="card">
+          <div className="favorite">
+            <img src="/img/heartoff.svg" alt="heartoff" />
+          </div>
           <img width={133} height={112} src="/img/sneakers/JordanAir.jpg" alt="Sneakers" />
           <h5>Man sneakers Jordan Air Jordan 11</h5>
           <div className="d-flex justify-between align-center ">
