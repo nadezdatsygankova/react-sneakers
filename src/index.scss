@@ -131,9 +131,16 @@ padding:30px;
 display: flex;
 flex-direction: column;
 
+.items{
+  overflow: auto;
+  margin-bottom: 40px;
+}
+
 
 h2{
   margin: 0;
+
+
 }
 }
 
@@ -156,7 +163,26 @@ h2{
     margin: 0 7px;
   }
 
-  button{
+  .greenButton{
+    position: relative;
+
+    &hover{
+      img{
+        transform: translateX(5px);
+      }
+    }
+    img{
+      position: absolute;
+      right: 30px;
+      top: 20px;
+      transition:transform 0.15s ease-in-out ;
+    }
+  }
+
+
+}
+
+.greenButton{
     width: 100%;
     height: 55px;
     background: #9DD558;
@@ -168,6 +194,8 @@ h2{
     cursor: pointer;
     transition: background 0.1s ease-in-out;
 
+
+
     &:hover{
       background: lighten($color: #9DD558, $amount: 5%)
     }
@@ -175,7 +203,6 @@ h2{
     &:active{
       background: darken($color: #9DD558, $amount: 5%)
     }
-  }
 }
 
 .item{
