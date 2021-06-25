@@ -5,6 +5,15 @@ import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
 
+
+const arr = [
+  { name: 'Jordan Air Jordan 11', price: '$155', imgeUrl: '/img/sneakers/JordanAir.jpg' },
+  { name: 'Nike Blazer Mid Suede', price: '$100', imgeUrl: '/img/sneakers/NikeBlazer.jpg' },
+  { name: 'Nike Air Max 270 ', price: '$120', imgeUrl: '/img/sneakers/NikeAir.jpg' },
+  { name: 'Puma X Aka Boku Future Rider ', price: '$110', imgeUrl: '/img/sneakers/PumaX.jpg' },
+  { name: 'Nike LeBron XVIII', price: '$100', imgeUrl: '/img/sneakers/NikeLeBron.jpg' },
+]
+
 function App() {
   return <div className="wrapper clear">
 
@@ -19,9 +28,14 @@ function App() {
         </div>
       </div>
       <div className="d-flex">
-        <Card />
-        <Card />
-        <Card />
+        {
+          arr.map((obj) =>
+            <Card title={obj.name}
+              price={obj.price}
+              imgeUrl={obj.imgeUrl}
+              onClick={() => console.log(obj)} />
+          )
+        }
 
       </div>
 
