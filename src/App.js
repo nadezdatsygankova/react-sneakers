@@ -10,8 +10,7 @@ const arr = [
   { name: 'Jordan Air Jordan 11', price: '$155', imgeUrl: '/img/sneakers/JordanAir.jpg' },
   { name: 'Nike Blazer Mid Suede', price: '$100', imgeUrl: '/img/sneakers/NikeBlazer.jpg' },
   { name: 'Nike Air Max 270 ', price: '$120', imgeUrl: '/img/sneakers/NikeAir.jpg' },
-  { name: 'Puma X Aka Boku Future Rider ', price: '$110', imgeUrl: '/img/sneakers/PumaX.jpg' },
-  { name: 'Nike LeBron XVIII', price: '$100', imgeUrl: '/img/sneakers/NikeLeBron.jpg' },
+  { name: 'Puma X Aka Boku Future Rider ', price: '$110', imgeUrl: '/img/sneakers/PumaX.jpg' }
 ]
 
 function App() {
@@ -27,13 +26,15 @@ function App() {
           <input placeholder="Search ..." ></input>
         </div>
       </div>
+
       <div className="d-flex">
         {
           arr.map((obj) =>
             <Card title={obj.name}
               price={obj.price}
               imgeUrl={obj.imgeUrl}
-              onClick={() => console.log(obj)} />
+              onFavorite={() => console.log("Add to favorite")}
+              onPlus={() => console.log("Click plus")} />
           )
         }
 
