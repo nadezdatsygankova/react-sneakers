@@ -1,5 +1,6 @@
 import styles from './Card.module.scss'
 
+//new
 console.log(styles);
 
 function Card(props) {
