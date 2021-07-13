@@ -10,10 +10,10 @@ import Drawer from './components/Drawer';
 function App() {
 
   const [items, setItems] = React.useState([]);
+  const [cartItems, setCartItems] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
-  //only do for the first time
+
   React.useEffect(() => {
-    //get to server - url mockAPI
     fetch('https://60ecf94aa78dc700178adc9b.mockapi.io/items')
       .then((res) => {
         return res.json();
@@ -23,9 +23,14 @@ function App() {
       });
   }, []);
 
+  const onAddToCart = (obj) => {
+    setCartItems((prev) => [...prev, obj]);
+  };
+
   return <div className="wrapper clear">
     {/* if use && (true or positive)to be the same  {cartOpened && <Drawer onClose={() => setCartOpened(false)} /> }  */}
-    {cartOpened ? <Drawer onClose={() => setCartOpened(false)} /> : null}
+    {/* {cartOpened ? <Drawer items={cartItems} onClose={() => setCartOpened(false)} /> : null} */}
+    {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}
     <Header onClickCart={() => setCartOpened(true)} />
     <div className="content  p-40 ">
       <div className="d-flex align-center mb-40 justify-between">
@@ -37,14 +42,14 @@ function App() {
       </div>
 
       <div className="d-flex flex-wrap">
-        {
-          items.map((obj) =>
-            <Card title={obj.name}
-              price={obj.price}
-              imgeUrl={obj.imgeUrl}
-              onFavorite={() => console.log("Add to favorite")}
-              onPlus={() => console.log("Click plus")} />
-          )
+        {items.map((item) =>
+          <Card
+            title={item.title}
+            price={item.price}
+            imageUrl={item.imageUrl}
+            onFavorite={() => console.log("Add to favorite")}
+            onPlus={(obj) => onAddToCart(obj)} />
+        )
         }
 
       </div>
