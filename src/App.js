@@ -11,8 +11,18 @@ function App() {
 
   const [items, setItems] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
+  //only do for the first time
+  React.useEffect(() => {
+    //get to server - url mockAPI
+    fetch('https://60ecf94aa78dc700178adc9b.mockapi.io/items')
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        setItems(json);
+      });
+  }, []);
 
-  fetch('https://60ecf94aa78dc700178adc9b.mockapi.io/items');
   return <div className="wrapper clear">
     {/* if use && (true or positive)to be the same  {cartOpened && <Drawer onClose={() => setCartOpened(false)} /> }  */}
     {cartOpened ? <Drawer onClose={() => setCartOpened(false)} /> : null}
