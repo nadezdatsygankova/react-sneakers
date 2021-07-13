@@ -10,17 +10,16 @@ const arr = [
   { name: 'Jordan Air Jordan 11', price: '$155', imgeUrl: '/img/sneakers/JordanAir.jpg' },
   { name: 'Nike Blazer Mid Suede', price: '$100', imgeUrl: '/img/sneakers/NikeBlazer.jpg' },
   { name: 'Nike Air Max 270 ', price: '$120', imgeUrl: '/img/sneakers/NikeAir.jpg' },
-  { name: 'Puma X Aka Boku Future Rider ', price: '$110', imgeUrl: '/img/sneakers/PumaX.jpg' }
+  { name: 'Puma X Aka BoCartOpenedku Future Rider ', price: '$110', imgeUrl: '/img/sneakers/PumaX.jpg' }
 ]
 
 function App() {
-  const test = React.useState(5);
-  console.log(test);
+  const [cartOpened, setCartOpened] = React.useState(false);
 
   return <div className="wrapper clear">
 
-    <Drawer />
-    <Header />
+    {cartOpened ? <Drawer onClose={() => setCartOpened(false)} /> : null}
+    <Header onClickCart={() => setCartOpened(true)} />
     <div className="content p-40">
       <div className="d-flex align-center mb-40 justify-between">
         <h1 className="">All sneakers</h1>
