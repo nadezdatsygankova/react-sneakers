@@ -11,6 +11,7 @@ function App() {
 
   const [items, setItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]);
+  const [searchValue, setSearchValue] = React.useState(''); //for search
   const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {
@@ -27,6 +28,11 @@ function App() {
     setCartItems((prev) => [...prev, obj]);
   };
 
+
+  const onChargeSearchInput = (event) =>{
+    setSearchValue(event.target.value);
+  }
+
   return <div className="wrapper clear">
     {/* if use && (true or positive)to be the same  {cartOpened && <Drawer onClose={() => setCartOpened(false)} /> }  */}
     {/* {cartOpened ? <Drawer items={cartItems} onClose={() => setCartOpened(false)} /> : null} */}
@@ -34,23 +40,31 @@ function App() {
     <Header onClickCart={() => setCartOpened(true)} />
     <div className="content  p-40 ">
       <div className="d-flex align-center mb-40 justify-between">
-        <h1 className="">All sneakers</h1>
+        <h1 className=""> {searchValue ? `Search by request: "${searchValue}"` : 'All sneakers'}   </h1>
         <div className="search-block d-flex">
           <img src="/img/search.svg" alt="Search" />
-          <input placeholder="Search ..." ></input>
+          {searchValue && (
+          <img
+           onClick={() => setSearchValue('')} 
+           className=" clear cu-p" 
+           src="/img/btn-remove.svg" 
+           alt="Clear" />
+          )}
+          <input onChange ={onChargeSearchInput} value ={searchValue} placeholder="Search ..." ></input>
         </div>
       </div>
 
       <div className="d-flex flex-wrap">
-        {items.map((item) =>
+        {items.map((item) => (
           <Card
+            key ={item.title}
             title={item.title}
             price={item.price}
             imageUrl={item.imageUrl}
             onFavorite={() => console.log("Add to favorite")}
-            onPlus={(obj) => onAddToCart(obj)} />
-        )
-        }
+            onPlus={(obj) => onAddToCart(obj)}
+          />
+        ))}
 
       </div>
 
