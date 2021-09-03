@@ -1,6 +1,7 @@
 
 
 import React from 'react'
+import axios from 'axios';
 import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
@@ -15,18 +16,32 @@ function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {
-    fetch('https://60ecf94aa78dc700178adc9b.mockapi.io/items')
-      .then((res) => {
-        return res.json();
-      })
-      .then((json) => {
-        setItems(json);
+    // fetch('https://60ecf94aa78dc700178adc9b.mockapi.io/items')
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((json) => {
+    //     setItems(json);
+    //   });
+
+      axios.get('https://60ecf94aa78dc700178adc9b.mockapi.io/items').then ((res) =>{
+        setItems(res.data);
       });
+      axios.get('https://60ecf94aa78dc700178adc9b.mockapi.io/cart').then ((res) =>{
+        setCartItems(res.data);
+      });
+
   }, []);
 
   const onAddToCart = (obj) => {
+    axios.post('https://60ecf94aa78dc700178adc9b.mockapi.io/cart',obj);
     setCartItems((prev) => [...prev, obj]);
+
   };
+
+  const onRemoveItem =(id) =>{
+    setCartItems((prev) => prev.filter (item => item.id !== id));
+  }
 
 
   const onChargeSearchInput = (event) =>{
@@ -36,7 +51,7 @@ function App() {
   return <div className="wrapper clear">
     {/* if use && (true or positive)to be the same  {cartOpened && <Drawer onClose={() => setCartOpened(false)} /> }  */}
     {/* {cartOpened ? <Drawer items={cartItems} onClose={() => setCartOpened(false)} /> : null} */}
-    {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}
+    {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} onRemove = {onRemoveItem} />}
     <Header onClickCart={() => setCartOpened(true)} />
     <div className="content  p-40 ">
       <div className="d-flex align-center mb-40 justify-between">
