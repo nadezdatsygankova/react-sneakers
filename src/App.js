@@ -55,7 +55,9 @@ function App() {
       </div>
 
       <div className="d-flex flex-wrap">
-        {items.map((item) => (
+        {items
+        .filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())) //search
+        .map((item) => (
           <Card
             key ={item.title}
             title={item.title}
