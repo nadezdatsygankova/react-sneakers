@@ -4,7 +4,7 @@ function Drawer({ onClose, items = [] }) {
             <div className="drawer">
                 <h2 className="d-flex justify-between mb-30 " >
                     Cart:
-                    <img onClick={onClose} className=" cu-p" src="/img/btn-remove.svg" alt="Remove" /></h2>
+                   </h2>
 
                 <div className="items">
                     {items.map((obj) => (
